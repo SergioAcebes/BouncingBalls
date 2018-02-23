@@ -1,5 +1,4 @@
 import java.awt.Color;
-
 import java.util.Random;
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -19,7 +18,7 @@ public class BallDemo
     public BallDemo()
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
-       
+
     }
 
     /**
@@ -34,7 +33,7 @@ public class BallDemo
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
 
-        for(int i=1; i < nBalls;i++){
+        for(int i=0; i < nBalls;i++){
             int tamaño = aleatorio.nextInt(30) + 10*i;
             int red = aleatorio.nextInt(256);
             int green = aleatorio.nextInt(256);
@@ -44,17 +43,17 @@ public class BallDemo
             ball.draw();
             balls[i] = ball;
         }
-        boolean move = false;
-        while(!move){
+
+        boolean finished = false;
+        while(!finished){
             myCanvas.wait(50);
             for(int i= 0;i < nBalls;i++){
                 balls[i].move();
                 if(balls[i].getXPosition() >= 550){
-                    move=true;
+                    finished=true;
                 }
             }
         }
-        
-        
+
     }
 }

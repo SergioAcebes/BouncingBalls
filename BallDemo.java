@@ -30,22 +30,27 @@ public class BallDemo
         int ground = 400;   // position of the ground line
         balls = new BouncingBall[nBalls];
         myCanvas.setVisible(true);
-
+        Random aleatorio = new Random();
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
 
-        for(int i=1; i <= nBalls;i++){
-            BouncingBall ball = new BouncingBall(50 + (i*10), 70 + (i*10), 2+(4*i), Color.BLUE, ground, myCanvas);
+        for(int i=1; i < nBalls;i++){
+            int tamaño = aleatorio.nextInt(30) + 10*i;
+            int red = aleatorio.nextInt(256);
+            int green = aleatorio.nextInt(256);
+            int blue = aleatorio.nextInt(256);
+            Color color = new Color(red,green,blue);
+            BouncingBall ball = new BouncingBall(50 + (i*10), 70 + (i*10),tamaño, color, ground, myCanvas);
             ball.draw();
             balls[i] = ball;
         }
         boolean move = true;
-        while(move!=true){
+        while(move!=false){
             myCanvas.wait(50);
             for(int j= 0;j < nBalls;j++){
                 balls[j].move();
-                if(balls[j].getXPosition() > 500){
-                    start=true;
+                if(balls[j].getXPosition() >= 550){
+                    move=false;
                 }
             }
         }

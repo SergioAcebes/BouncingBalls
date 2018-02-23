@@ -44,13 +44,13 @@ public class BallDemo
             ball.draw();
             balls[i] = ball;
         }
-        boolean move = true;
-        while(move!=false){
+        boolean move = false;
+        while(!move){
             myCanvas.wait(50);
-            for(int j= 0;j < nBalls;j++){
-                balls[j].move();
-                if(balls[j].getXPosition() >= 550){
-                    move=false;
+            for(int i= 0;i < nBalls;i++){
+                balls[i].move();
+                if(balls[i].getXPosition() >= 550){
+                    move=true;
                 }
             }
         }
